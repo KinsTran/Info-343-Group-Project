@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/info343-a16/challenges"
+    "url": "https://github.com/KinsTran/Info-343-Group-Project"
   },
-  "description": "Architecting Web Applications assignment for INFO 343",
+  "description": "Bonseye is an app designed to pick restaurants for you and your friends when you can't do it yourself",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,7 +17,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "numeral": "^1.5.5",
     "react": "15.3.1",
     "react-dom": "15.3.1",
     "react-router": "^2.7.0",
