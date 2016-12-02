@@ -6,7 +6,7 @@
     "url": "https://github.com/KinsTran/Info-343-Group-Project"
   },
   "description": "Bonseye is an app designed to pick restaurants for you and your friends when you can't do it yourself",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
