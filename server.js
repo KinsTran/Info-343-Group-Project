@@ -13,7 +13,7 @@ app.use(express.static("./static"));
 
 app.get("/api/v1/search", function(req, res, next) {
     var params = {
-        term: "bars",
+        term: "restaurant",
         ll: req.query.lat + "," + req.query.lng
     };
     yelp.search(params)
