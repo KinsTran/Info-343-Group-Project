@@ -16,3 +16,4 @@ signOutButton.addEventListener("click", function() {
     firebase.auth().signOut();
 })
 
+// https://github.com/KinsTran/info343-in-class/blob/master/node/server.js for yelp api stuff
