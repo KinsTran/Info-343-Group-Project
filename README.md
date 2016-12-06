@@ -7,7 +7,6 @@ For our project we are planning on creating a web application that picks a rando
  * Yelp
  * Express
  * Router
- * React
  
 ## Web Services:
  * Yelp API
