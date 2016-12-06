@@ -6,7 +6,6 @@ For our project we are planning on creating a web application that picks a rando
 ## Libraries:
  * Yelp
  * Express
- * Router
  
 ## Web Services:
  * Yelp API
