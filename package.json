@@ -1,7 +1,7 @@
 {
-  "name": "node",
+  "name": "bonseye",
   "version": "1.0.0",
-  "description": "sample node server",
+  "description": "will generate a random restaurant based on user preferences",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,16 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/info343-a16/info343-in-class.git"
+    "url": "https://github.com/kinstran/bonseye.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/info343-a16/info343-in-class/issues"
+    "url": "https://github.com/kinstran/bonseye/issues"
   },
-  "homepage": "https://github.com/info343-a16/info343-in-class#readme",
+  "homepage": "https://github.com/kinstran/bonseye#readme",
   "dependencies": {
     "express": "^4.14.0",
+    "firebase": "^3.6.3",
     "yelp": "^1.0.1"
   }
 }
