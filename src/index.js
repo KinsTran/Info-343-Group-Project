@@ -4,6 +4,8 @@ import {render} from "react-dom";
 import App from "./components/app.jsx";
 import Products from "./components/products.jsx";
 import Cart from "./components/cart.jsx";
+import Map from "./components/map.jsx";
+
 
 import {Router, Route, IndexRoute, hashHistory} from "react-router";
 //import our stylesheet so webpack puts it into the bundle
@@ -16,6 +18,7 @@ var router = (
         <Route path="/" component={App}>
             <IndexRoute component={Products}></IndexRoute>
             <Route path="/cart" component={Cart}></Route>
+            <Route path="/map" component={Map}></Route>
         </Route>
     </Router>
 );
