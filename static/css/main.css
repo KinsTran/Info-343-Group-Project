@@ -1,17 +1,123 @@
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
     margin: 0;
     padding: 0;
+    background-color: #fff;
 }
 
-/* make the <div id="map"> element 
+/*
+    Fonts: default, big
+*/
+
+.default-font {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.big-font {
+    font-size: 35px;
+    color: #fff;
+    text-shadow: 0 0 7px rgba(0,0,0,0.3);
+}
+
+/* make the <div id="map"> element
 fill the entire viewport */
 #map {
     width: 100vw; /* 1vw is 1/100th of the viewport width */
     height: 100vh; /* 1vh is 1/100th of the viewport height */
 }
 
-.button {
+
+
+.center {
+    margin: auto;
+}
+
+.text-center {
     text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.nav {
+    padding: 10px;
+    height: 50px;
+    width: 100vw;
+}
+
+.nav-title {
+    width: 20%;
+}
+
+.nav-button {
+    width: 10%;
+}
+
+.logo {
+    background: url("../res/256.png");
+    background-position: center;
+    background-size: cover;
+    width: 10%;
+    margin: 0 10px;
+}
+
+.background {
+    background-color: #ccc;
+}
+
+.container {
+    padding: 10px;
+    background-color: #fff;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}
+
+.flex-start {
+    justify-content: flex-start;
+}
+
+.button {
+    width: 80px;
+    height: 20px;
+    padding: 10px;
+    margin: 10px;
+
+    border-color: #333;
+    border-width: 0px;
+    border-style: solid;
+    border-radius: 7px;
+
+    background-color: #fff;
+    transition: background-color 300ms;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+.shadow-drama {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.form-style {
+    padding: 10px;
+    border-radius: 7px;
+    border-width: 0;
+
+    margin: 7px;
 }
