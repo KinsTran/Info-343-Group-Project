@@ -11,6 +11,7 @@ var yelp = new Yelp({
 
 app.use(express.static("./static"));
 
+// fetches the data from the Yelp API using the "yelp" module
 app.get("/api/v1/search", function(req, res, next) {
     var params = {
         term: "restaurant",
