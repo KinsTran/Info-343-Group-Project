@@ -21,14 +21,6 @@ body {
     text-shadow: 0 0 7px rgba(0,0,0,0.3);
 }
 
-/* make the <div id="map"> element
-fill the entire viewport */
-#map {
-    width: 100vw; /* 1vw is 1/100th of the viewport width */
-    height: 100vh; /* 1vh is 1/100th of the viewport height */
-}
-
-
 
 .center {
     margin: auto;
@@ -120,4 +112,22 @@ fill the entire viewport */
     border-width: 0;
 
     margin: 7px;
+}
+
+/* ID SPECIFIC */
+
+/* make the <div id="map"> element
+fill the entire viewport */
+#map {
+    width: 100vw; /* 1vw is 1/100th of the viewport width */
+    height: 100vh; /* 1vh is 1/100th of the viewport height */
+}
+
+#login-forms {
+    border-right: white solid 2px;
+
+}
+
+#welcome-message {
+    overflow: hidden;
 }
