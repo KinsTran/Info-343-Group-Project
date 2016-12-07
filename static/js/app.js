@@ -1,47 +1,54 @@
 "use strict";
 
-
+// OpenStreetMap tile server for the map
 var osmTiles = {
     url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 };
 
+// gets the div with id="map" which is where the map will go
 var mapDiv = document.getElementById("map");
+// gets the button with the id="pick" to use for choosing a new restaurant
+var pick = document.getElementById("pick");
+// coordinates of Seattle to use as a backup incase the user denies location permission
 var seattleCoords = L.latLng(47.61, -122.33);
 var defaultZoom = 14;
-
+// array of all the markers we add to the map
 var markers = [];
+// all the restaurants returned in our search
+var allRestaurants;
+// the users' current location if they allow permission
+var currentLocation;
 
 var map = L.map(mapDiv).setView(seattleCoords, defaultZoom);
 L.tileLayer(osmTiles.url, {
     attribution: osmTiles.attribution
 }).addTo(map);
 
+// clears all the markers on the map
 function clearMarkers() {
     markers.forEach(function(marker) {
         map.removeLayer(marker);
     });
 }
 
-/**
- * onPosition() is called after a successful geolocation 
- * @param {object} position geolocation position data
- */
+// creates a new latlng object and gets the restaurants around the users' current location
+// takes an object containing position data
 function onPosition(position) {
     var latlng = L.latLng(position.coords.latitude, position.coords.longitude);
     getRestaurants(latlng);
 }
 
-/**
- * onPositionError() is called after a geolocation error
- * @param {Error} err the error 
- */
-function onPositionError(err) {
-    console.error(err);
+// if there is an error with the users location then it reports it to the user and picks a restaurant in Seattle
+// takes an error to tell the user
+function onPositionError(error) {
+    console.error(error);
     alert(err.message);
     getRestaurants(seattleCoords);
 }
 
+// asks the user to be allouw use of their current location to find restaurants, if they dont allow permission then
+// choose a restaurant in the Seattle area
 if (navigator && navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(onPosition, onPositionError, 
         {enableHighAccuracy: true});
@@ -49,17 +56,28 @@ if (navigator && navigator.geolocation) {
     getRestaurants(seattleCoords);
 }
 
-map.addEventListener("click", function(event) {
-    clearMarkers();
-    getRestaurants(event.latlng);
+pick.addEventListener("click", function() {
+        clearMarkers();
+        chooseRestaurant();
 });
 
-function chooseRestaurant(data) {
+// creates a marker of the users' current location
+function createMarker() {
+    var marker = L.marker(currentLocation).addTo(map);
+    markers.push(marker);
+}
+
+// creates markers for the users' location and the restaurant that was picked
+function chooseRestaurant() {
+    createMarker();
+
     // http://www.javascriptkit.com/javatutors/randomnum.shtml
     var rand = Math.floor(Math.random()*20);
+    var restaurant = allRestaurants.businesses[rand];
 
-    var restaurant = data.businesses[rand];
-    var blatlng = L.latLng(restaurant.location.coordinate.latitude, restaurant.location.coordinate.longitude);
+    var restaurantLocation = L.latLng(restaurant.location.coordinate.latitude, restaurant.location.coordinate.longitude);
+
+    var blatlng = L.latLng(restaurantLocation.lat, restaurantLocation.lng);
     var marker = L.circleMarker(blatlng).addTo(map);
     markers.push(marker);
 
@@ -74,40 +92,36 @@ function chooseRestaurant(data) {
     imgPrev.src = restaurant.image_url;
     imgPrev.alt = "preview image of " + restaurant.name;
 
+    var phone = divPopup.appendChild(document.createElement("a"));
+    phone.href = "tel:" + restaurant.phone;
+    phone.textContent = restaurant.display_phone;
+
+    var address = divPopup.appendChild(document.createElement("p"));
+    address.textContent = restaurant.location.display_address;
+    
     marker.bindPopup(divPopup);
 }
 
-/**
- * getRestaurants() fetches the nearby bars from our server
- * and plots them on the map
- * @param {object} latlng Leaflet.js LatLng object
- * @param {number} latlng.lat the latitude
- * @param {number} latlng.lng the longitude
- */
+// fetches restaurants that are close the the passed in coordinates and plots them on the map
+// takes an object with latitude and longitude properties
 function getRestaurants(latlng) {
-    var marker = L.marker(latlng).addTo(map);
-    markers.push(marker);
+    
+    currentLocation = latlng; 
+    createMarker();
     map.panTo(latlng);
 
     var url = "/api/v1/search";
     url += "?lat=" + latlng.lat;
     url += "&lng=" + latlng.lng;
-    console.log("fetching", url); 
     fetch(url)
         .then(function(response) {
             return response.json();
         })
         .then(function(data) {
-            console.log(data);
-            chooseRestaurant(data);
+            allRestaurants = data;
+            chooseRestaurant();
         })
-        .catch(function(err) {
-            console.error(err);
+        .catch(function(error) {
+            console.error(error);
         });
 } 
-
-// move chooseRestaurant to eventListener on a button outside of getRestaurants
-// maybe add change location button and attatch to map listener
-// add state object that has data and user stored to be able to use globaly
-// store the array of restuarants as a global to query later
-// add address and phone number to pop up
