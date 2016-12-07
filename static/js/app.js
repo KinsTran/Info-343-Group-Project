@@ -7,10 +7,13 @@ var osmTiles = {
 };
 
 var mapDiv = document.getElementById("map");
+var pick = document.getElementById("pick");
 var seattleCoords = L.latLng(47.61, -122.33);
 var defaultZoom = 14;
-
 var markers = [];
+
+var allRestaurants;
+var currentLocation;
 
 var map = L.map(mapDiv).setView(seattleCoords, defaultZoom);
 L.tileLayer(osmTiles.url, {
@@ -49,17 +52,26 @@ if (navigator && navigator.geolocation) {
     getRestaurants(seattleCoords);
 }
 
-map.addEventListener("click", function(event) {
-    clearMarkers();
-    getRestaurants(event.latlng);
+pick.addEventListener("click", function() {
+        clearMarkers();
+        chooseRestaurant();
 });
 
-function chooseRestaurant(data) {
+function createMarker() {
+    var marker = L.marker(currentLocation).addTo(map);
+    markers.push(marker);
+}
+
+function chooseRestaurant() {
+    createMarker();
+
     // http://www.javascriptkit.com/javatutors/randomnum.shtml
     var rand = Math.floor(Math.random()*20);
+    var restaurant = allRestaurants.businesses[rand];
 
-    var restaurant = data.businesses[rand];
-    var blatlng = L.latLng(restaurant.location.coordinate.latitude, restaurant.location.coordinate.longitude);
+    var restaurantLocation = L.latLng(restaurant.location.coordinate.latitude, restaurant.location.coordinate.longitude);
+
+    var blatlng = L.latLng(restaurantLocation.lat, restaurantLocation.lng);
     var marker = L.circleMarker(blatlng).addTo(map);
     markers.push(marker);
 
@@ -85,8 +97,9 @@ function chooseRestaurant(data) {
  * @param {number} latlng.lng the longitude
  */
 function getRestaurants(latlng) {
-    var marker = L.marker(latlng).addTo(map);
-    markers.push(marker);
+    
+    currentLocation = latlng; 
+    createMarker();
     map.panTo(latlng);
 
     var url = "/api/v1/search";
@@ -99,7 +112,8 @@ function getRestaurants(latlng) {
         })
         .then(function(data) {
             console.log(data);
-            chooseRestaurant(data);
+            allRestaurants = data;
+            chooseRestaurant();
         })
         .catch(function(err) {
             console.error(err);
