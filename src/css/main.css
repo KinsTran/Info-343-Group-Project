@@ -148,7 +148,7 @@ fill the entire viewport */
 }
 
 #login-page-background {
-    height: 90vh;
+    /*height: 90vh;*/
     overflow: hidden;
     background: url('../res/map-bg.jpg');
     background-size: cover;
@@ -205,4 +205,10 @@ fill the entire viewport */
         width: 70%;
         overflow: hidden;
     }
+
+    .big-font {
+        font-size: 20px;
+        text-shadow: 0 0 7px rgba(0,0,0,0.3);
+    }
+
 }
