@@ -9,7 +9,7 @@ var yelp = new Yelp({
     token_secret: process.env.TOKEN_SECRET
 });
 
-app.use(express.static("./static"));
+app.use(express.static("./src"));
 
 // fetches the data from the Yelp API using the "yelp" module
 app.get("/api/v1/search", function(req, res, next) {
