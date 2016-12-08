@@ -5,7 +5,7 @@ var TESTUSER = true; // FOR TESTING PURPOSES TAKE OUT LATER
 var currentUser;
 var signOutButton = document.getElementById("signOut"); // NEEDS TO HAVE SIGNOUT BUTTON
 
-const YELPCAT = "https://www.yelp.com/developers/documentation/v2/all_category_list/categories.json";
+const YELPCATEGORIES = "https://www.yelp.com/developers/documentation/v2/all_category_list/categories.json";
 
 //TEMPORARY HARD CODE, FETCH LATER
 var tempCategories = require("../../categories.json")
