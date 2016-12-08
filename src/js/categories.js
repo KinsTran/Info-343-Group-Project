@@ -1,4 +1,5 @@
-[
+var categories = 
+    [
     {
         "parents": [
             "localservices"
@@ -15615,4 +15616,4 @@
         "alias": "zorbing",
         "title": "Zorbing"
     }
-]
+];
