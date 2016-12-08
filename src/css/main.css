@@ -152,3 +152,8 @@ fill the entire viewport */
     width: 45%;
     overflow: hidden;
 }
+
+#options {
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
