@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
     <link rel="stylesheet" href="../css/main.css">
 </head>
-<body>
-    <div class="nav flex-row flex-start shadow-drama" id="nav">
+<body class="default-font">
+    <div class="nav shadow-drama" id="nav">
         <div class="logo"></div>
-        <button id="pick">Choose!</button>
+        <div class="flex-row">
+            <button id="pick" class="center button text-center shadow-drama default-font">choose</button>
+        </div>
     </div>
-    <div id="map"></div>
-
+    <div id="map">
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.0/fetch.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="../js/app.js"></script>
