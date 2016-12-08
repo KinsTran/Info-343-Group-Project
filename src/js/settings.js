@@ -9,8 +9,9 @@ var options = document.getElementById("options");
 const YELPCATEGORIES = "https://www.yelp.com/developers/documentation/v2/all_category_list/categories.json";
 
 //TEMPORARY HARD CODE, FETCH LATER
-var tempCategories = require("../../categories.json") // CANNOT GET REQUIRE TO WORK FIX THIS
-var categories = JSON.parse(tempCategories);
+//var tempCategories = require("../../categories.json") // CANNOT GET REQUIRE TO WORK FIX THIS
+//var categories = JSON.parse(tempCategories);
+var testCategories = ["Burgers", "Chinese", "Italian", "COFFEE"]; //FOR TESTING ONLY
 //http://stackoverflow.com/questions/45015/safely-turning-a-json-string-into-an-object Forgot all about this to be honest
 
 var restuarants = new Array;
@@ -26,7 +27,7 @@ firebase.auth().onAuthStateChanged(function(user){
                 restuarants.push(place.title);
             }
         })
-        renderOptions();
+        renderOptions(testCategories); // Change to categories later
 
     } else { // Redirect to index if navigates to settings without being logged in OR if user logs out
         location = "index.html";
@@ -38,10 +39,19 @@ signOutButton.addEventListener("click", function() { // Signs out for user if cl
     firebase.auth().signOut();
 })
 
-function renderOptions() { // Added for clarity's sake
-    restuarants.forEach(function() {
+function renderOptions(list) { // Added for clarity's sake
+    list.forEach(function(type) {
         var button = document.createElement("div");
-        button.classList.add("button", "shadow-drama");
-        
+        button.classList.add("button", "shadow-drama", "small-button");
+        button.textContent = type;
+        if(button) { // If preference already selected in firebase, color green
+            button.classList.add("selected");
+        }
+        button.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+        })
+        options.appendChild(button);
     })
+
 }
