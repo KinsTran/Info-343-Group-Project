@@ -12,6 +12,8 @@ var mapDiv = document.getElementById("map");
 var pick = document.getElementById("pick");
 // gets button with id="sign-out" for signing out of firebase and returning to home
 var signout = document.getElementById("sign-out");
+// gets button with id="username" for going to user settings
+var userButton = document.getElementById("username");
 // coordinates of Seattle to use as a backup incase the user denies location permission
 var seattleCoords = L.latLng(47.61, -122.33);
 var defaultZoom = 14;
@@ -72,6 +74,12 @@ signout.addEventListener("click", function() {
         console.log(error.message);
     });
 });
+
+userButton.addEventListener("click", function() {
+    window.location = "settings.html";
+});
+
+
 
 // Shortcut for choosing new restaurant
 // http://stackoverflow.com/questions/16089421/simplest-way-to-detect-keypresses-in-javascript
