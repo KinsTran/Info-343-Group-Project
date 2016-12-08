@@ -24,7 +24,7 @@ var allRestaurants;
 // the users' current location if they allow permission
 var currentLocation;
 
-var map = L.map(mapDiv).setView(seattleCoords, defaultZoom);
+var map = L.map(mapDiv, {touchZoom: true, dragging: true, tap:true, }).setView(seattleCoords, defaultZoom);
 L.tileLayer(osmTiles.url, {
     attribution: osmTiles.attribution
 }).addTo(map);
@@ -78,8 +78,6 @@ signout.addEventListener("click", function() {
 userButton.addEventListener("click", function() {
     window.location = "settings.html";
 });
-
-
 
 // Shortcut for choosing new restaurant
 // http://stackoverflow.com/questions/16089421/simplest-way-to-detect-keypresses-in-javascript
@@ -136,7 +134,8 @@ function chooseRestaurant() {
     var address = divPopup.appendChild(document.createElement("p"));
     address.textContent = restaurant.location.display_address;
     
-    marker.bindPopup(divPopup);
+    marker.bindPopup(divPopup).openPopup();
+    
 }
 
 // fetches restaurants that are close the the passed in coordinates and plots them on the map
