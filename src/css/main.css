@@ -44,7 +44,6 @@ a {
 }
 
 .nav {
-    padding: 10px;
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -96,7 +95,7 @@ a {
     /*width: 80px;*/
     /*height: 20px;*/
     padding: 10px;
-    margin: 10px;
+    margin: 5px;
 
     color: #333;
 
@@ -144,19 +143,18 @@ a {
 }
 /* ID SPECIFIC */
 
-/* make the <div id="map"> element
-fill the entire viewport */
 #map {
-    width: 100vw; /* 1vw is 1/100th of the viewport width */
-    height: 90vh; /* 1vh is 1/100th of the viewport height */
+    width: 100vw;
+    height: 90vh;
 }
 
+/* Below are styles for the login/signup pages */
 #login-page-nav {
     z-index: -1;
 }
 
 #login-page-background {
-    height: 90vh;
+    /*height: 90vh;*/
     overflow: hidden;
     background: url('../res/map-bg.jpg');
     background-size: cover;
@@ -194,7 +192,12 @@ fill the entire viewport */
     font-size: 0.9em;
 }
 
-@media(max-width: 768px) {
+@media(max-width: 1024px) {
+    .big-font {
+        font-size: 20px;
+        text-shadow: 0 0 7px rgba(0,0,0,0.3);
+    }
+
    #login-page-center-container {
         padding: 20vh 0;
     }

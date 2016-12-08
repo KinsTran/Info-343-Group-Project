@@ -8,6 +8,8 @@ var osmTiles = {
 
 // gets the div with id="map" which is where the map will go
 var mapDiv = document.getElementById("map");
+// amount to offset each search by to get more options for restaurants
+var offset = 0;
 // gets the button with the id="pick" to use for choosing a new restaurant
 var pick = document.getElementById("pick");
 // gets button with id="sign-out" for signing out of firebase and returning to home
@@ -24,7 +26,8 @@ var allRestaurants;
 // the users' current location if they allow permission
 var currentLocation;
 
-var map = L.map(mapDiv).setView(seattleCoords, defaultZoom);
+var map = L.map(mapDiv, {touchZoom: true, dragging: true, tap:true}).setView(seattleCoords, defaultZoom);
+
 L.tileLayer(osmTiles.url, {
     attribution: osmTiles.attribution
 }).addTo(map);
@@ -62,7 +65,7 @@ if (navigator && navigator.geolocation) {
 
 pick.addEventListener("click", function() {
         clearMarkers();
-        chooseRestaurant();
+        getRestaurants(currentLocation);
 });
 
 signout.addEventListener("click", function() {
@@ -79,15 +82,13 @@ userButton.addEventListener("click", function() {
     window.location = "settings.html";
 });
 
-
-
 // Shortcut for choosing new restaurant
 // http://stackoverflow.com/questions/16089421/simplest-way-to-detect-keypresses-in-javascript
 window.onkeypress = function(e) {
     e = e || window.event;
     if(e.keyCode == 32) {
         clearMarkers();
-        chooseRestaurant();
+        getRestaurants();
     }
 };
 
@@ -136,7 +137,8 @@ function chooseRestaurant() {
     var address = divPopup.appendChild(document.createElement("p"));
     address.textContent = restaurant.location.display_address;
     
-    marker.bindPopup(divPopup);
+    marker.bindPopup(divPopup).openPopup();
+    
 }
 
 // fetches restaurants that are close the the passed in coordinates and plots them on the map
@@ -150,11 +152,15 @@ function getRestaurants(latlng) {
     var url = "/api/v1/search";
     url += "?lat=" + latlng.lat;
     url += "&lng=" + latlng.lng;
+    url += "&offset=" + offset * 3;
+    offset++;
+    console.log("fetching", url);
     fetch(url)
         .then(function(response) {
             return response.json();
         })
         .then(function(data) {
+            console.log("data:", data);
             allRestaurants = data;
             chooseRestaurant();
         })
