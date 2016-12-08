@@ -10,6 +10,8 @@ var osmTiles = {
 var mapDiv = document.getElementById("map");
 // gets the button with the id="pick" to use for choosing a new restaurant
 var pick = document.getElementById("pick");
+// gets button with id="sign-out" for signing out of firebase and returning to home
+var signout = document.getElementById("sign-out");
 // coordinates of Seattle to use as a backup incase the user denies location permission
 var seattleCoords = L.latLng(47.61, -122.33);
 var defaultZoom = 14;
@@ -59,6 +61,16 @@ if (navigator && navigator.geolocation) {
 pick.addEventListener("click", function() {
         clearMarkers();
         chooseRestaurant();
+});
+
+signout.addEventListener("click", function() {
+    firebase.auth().signOut()
+    .then(function() {
+        window.location = "login.html";
+    })
+    .catch(function(error) {
+        console.log(error.message);
+    });
 });
 
 // Shortcut for choosing new restaurant
