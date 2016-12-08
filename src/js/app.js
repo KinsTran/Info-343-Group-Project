@@ -8,6 +8,8 @@ var osmTiles = {
 
 // gets the div with id="map" which is where the map will go
 var mapDiv = document.getElementById("map");
+// amount to offset each search by to get more options for restaurants
+var offset = 0;
 // gets the button with the id="pick" to use for choosing a new restaurant
 var pick = document.getElementById("pick");
 // gets button with id="sign-out" for signing out of firebase and returning to home
@@ -63,7 +65,7 @@ if (navigator && navigator.geolocation) {
 
 pick.addEventListener("click", function() {
         clearMarkers();
-        chooseRestaurant();
+        getRestaurants(currentLocation);
 });
 
 signout.addEventListener("click", function() {
@@ -86,7 +88,7 @@ window.onkeypress = function(e) {
     e = e || window.event;
     if(e.keyCode == 32) {
         clearMarkers();
-        chooseRestaurant();
+        getRestaurants();
     }
 };
 
@@ -150,11 +152,15 @@ function getRestaurants(latlng) {
     var url = "/api/v1/search";
     url += "?lat=" + latlng.lat;
     url += "&lng=" + latlng.lng;
+    url += "&offset=" + offset * 3;
+    offset++;
+    console.log("fetching", url);
     fetch(url)
         .then(function(response) {
             return response.json();
         })
         .then(function(data) {
+            console.log("data:", data);
             allRestaurants = data;
             chooseRestaurant();
         })
