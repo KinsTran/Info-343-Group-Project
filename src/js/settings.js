@@ -47,15 +47,15 @@ function renderOptions(snapshot) { // Added for clarity's sake, instead of just 
         if(snapshot.child(type).val != null) { // If preference already selected in firebase; NEED TO CODE THIS
             button.classList.add("selected");
             button.addEventListener("click", function(event) { // removes from list CODE THIS
-                firebase.database().ref("preferences/").update({ // Assumes uid is key FIX IF NOT
-                    
-                })// https://firebase.google.com/docs/reference/js/firebase.database.Reference#update
-            }) // UPdate vs Transaction
+                var newObject = new Object; // http://stackoverflow.com/questions/29568979/how-set-key-to-variables-value-using-firebase-javascript
+                newObject[type] = null; // ASSUMES Uid is Key FIX IF NOT
+                firebase.database().ref("preferences/" + currentUser.uid).update(newObject)
+            })
         } else {
                 button.addEventListener("click", function(event) { // Adds to list CODE THIS
-                    firebase.database().ref("preferences/" + currentUser.uid).update({ // Assumes uid is key FIX IF NOT
-                        
-                    })
+                    var newObject = new Object;
+                    newObject[type] = true;
+                    firebase.database().ref("preferences/" + currentUser.uid).update(newObject);
                 })
         }
         options.appendChild(button);
