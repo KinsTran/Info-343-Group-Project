@@ -181,3 +181,28 @@ fill the entire viewport */
     color: red;
     font-size: 0.9em;
 }
+
+@media(max-width: 768px) {
+   #login-page-center-container {
+        padding: 20vh 0;
+    }
+
+    #login-page-center-flex {
+        width: 100%;
+        overflow: hidden;
+        flex-wrap: wrap;
+    }
+
+    #login-page-forms {
+        width: 70%;
+        border: none;
+        /*border-right: white solid 2px;*/
+    }
+
+    #login-page-welcome-message {
+        text-align: center;
+        padding: 10px;
+        width: 70%;
+        overflow: hidden;
+    }
+}
