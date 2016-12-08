@@ -151,6 +151,8 @@ fill the entire viewport */
     height: 90vh;
     overflow: hidden;
     background: url('../res/map-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #login-page-center-container {
