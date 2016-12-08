@@ -17,7 +17,8 @@ var restuarants = new Array;
 
 
 firebase.auth().onAuthStateChanged(function(user){
-    if(TESTUSER) {
+    if(TESTUSER) { //REMEMBER TO CHANGE BACK TO user
+        console.log(categories);
         currentUser = user;
         categories.forEach(function(place) {
             if(place.parents.includes("restuarants") && place.country_whitelist.includes("US")) {
