@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>bonseye</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Bonseye | Find Nearby Food</title>
     <link rel="icon" href="img/page-icon.png">
 
-    <!--our own stylesheet-->
     <link rel="stylesheet" href="../css/main.css">
 
     <!--defer allows js files to load after the html-->
@@ -14,24 +14,37 @@
     <script defer src="../js/common.js"></script>
     <script defer src="../js/index.js"></script>
 </head>
-<body>
-    <main>
-        <h2>Hungry? Create an account!</h2>
-        <form id="sign-up-form">
-            <label for="email">Your Email</label>
-            <input type="text" name="user-email" id="email" placeholder="you@email.com">
-            <label for="display-name">Display Name</label>
-            <input type="text" name="display-name" id="display" placeholder="others will see this">
-            <label for="password">Password</label>
-            <input type="password" name="user-password" id="password" placeholder="password">
-            <label for="confirmation">Confirm Password</label>
-            <input type="password" name="confirm-password" id="confirm" placeholder="one more time">
-            <input type="submit" value="submit">
-        </form>
-
-        <div id="error"></div>
-
-        <p>Already have an account? <a href="signin.html">Sign In</a></p>
-    </main>
+<body class="default-font">
+    <!-- Reference sheet for css styling classes  -->
+    <div id="login-page-nav" class="nav flex-row flex-start shadow-drama">
+        <div class="logo"></div>
+    </div>
+    <div id="login-page-background" class="container big-font">
+        <div id="login-page-center-container">
+            <div id="login-page-center-flex" class="flex-row big-font center">
+                <div id="login-page-forms" class="text-center">
+                    <form action="" class="default-font">
+                        <input type="text" id="email" class="form-style shadow-drama" placeholder="you@email.com">
+                        <input type="text" id="display" class="form-style shadow-drama" placeholder="username">
+                        <input type="password" id="password" class="form-style shadow-drama" placeholder="password">
+                        <input type="password" id="confirm" class="form-style shadow-drama" placeholder="confirm password">
+                        <button type="submit" value="submit" id="submit" class="form-style shadow-drama button">
+                            Sign Up
+                        </button>
+                        <div id="error"></div>
+                    </form>
+                </div>
+                <div id="login-page-welcome-message" class="text-center" style="">
+                    <div>
+                        Good eats await those who create an account.
+                    </div>
+                </div>
+            </div>
+            <p class="switch-auth"style="text-align: center;">
+                Already have an account? 
+                <a href="login.html">Sign In</a>
+            </p>
+        </div>
+    </div>
 </body>
 </html>

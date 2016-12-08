@@ -1,6 +1,6 @@
 "use strict";
 
-var signInForm = document.getElementById("sign-in-form");
+var signInForm = document.getElementById("login-page-forms");
 var userEmail = document.getElementById("email");
 var userPassword = document.getElementById("password");
 var errorBox = document.getElementById("error");
