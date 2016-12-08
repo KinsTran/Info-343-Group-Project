@@ -136,6 +136,10 @@ a {
     width: 80%;
 }
 
+.pop-up {
+    max-width: 175px;
+}
+
 /* ID SPECIFIC */
 
 /* make the <div id="map"> element

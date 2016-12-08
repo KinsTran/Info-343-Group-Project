@@ -82,19 +82,26 @@ function chooseRestaurant() {
     markers.push(marker);
 
     var divPopup = document.createElement("div");
+    divPopup.className = "pop-up"
     var h2 = divPopup.appendChild(document.createElement("h2"));
     h2.textContent = restaurant.name;
     var img = divPopup.appendChild(document.createElement("img"));
     img.src = restaurant.rating_img_url;
     img.alt = "rating is " + restaurant.rating + " stars";
 
+    divPopup.appendChild(document.createElement("br"));
+
     var imgPrev = divPopup.appendChild(document.createElement("img"));
     imgPrev.src = restaurant.image_url;
     imgPrev.alt = "preview image of " + restaurant.name;
 
+    divPopup.appendChild(document.createElement("br"));
+
     var phone = divPopup.appendChild(document.createElement("a"));
     phone.href = "tel:" + restaurant.phone;
     phone.textContent = restaurant.display_phone;
+
+    divPopup.appendChild(document.createElement("br"));
 
     var address = divPopup.appendChild(document.createElement("p"));
     address.textContent = restaurant.location.display_address;
