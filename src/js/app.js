@@ -25,6 +25,7 @@ var allRestaurants;
 var currentLocation;
 
 var map = L.map(mapDiv, {touchZoom: true, dragging: true, tap:true}).setView(seattleCoords, defaultZoom);
+
 L.tileLayer(osmTiles.url, {
     attribution: osmTiles.attribution
 }).addTo(map);
