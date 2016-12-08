@@ -7,4 +7,10 @@ var config = {
     storageBucket: "bonseye-56d35.appspot.com",
     messagingSenderId: "827229640305"
 };
+
 firebase.initializeApp(config);
+
+var database = firebase.database();
+
+var userPreferencesRef = database.ref("preferences");
+var userSessionRef = database.ref("session");
