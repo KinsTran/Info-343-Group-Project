@@ -4,6 +4,11 @@ body {
     background-color: #fff;
 }
 
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
 /*
     Fonts: default, big
 */
