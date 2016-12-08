@@ -61,6 +61,16 @@ pick.addEventListener("click", function() {
         chooseRestaurant();
 });
 
+// Shortcut for choosing new restaurant
+// http://stackoverflow.com/questions/16089421/simplest-way-to-detect-keypresses-in-javascript
+window.onkeypress = function(e) {
+    e = e || window.event;
+    if(e.keyCode == 32) {
+        clearMarkers();
+        chooseRestaurant();
+    }
+};
+
 // creates a marker of the users' current location
 function createMarker() {
     var marker = L.marker(currentLocation).addTo(map);
