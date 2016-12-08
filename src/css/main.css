@@ -44,7 +44,6 @@ a {
 }
 
 .nav {
-    padding: 10px;
     height: 50px;
     display: flex;
     justify-content: space-between;
