@@ -182,7 +182,7 @@ fill the entire viewport */
     font-size: 0.9em;
 }
 
-@media(max-width: 768px) {
+@media(max-width: 1024px) {
    #login-page-center-container {
         padding: 20vh 0;
     }
