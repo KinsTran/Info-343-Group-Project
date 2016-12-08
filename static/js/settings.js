@@ -8,7 +8,7 @@ var signOutButton = document.getElementById("signOut"); // NEEDS TO HAVE SIGNOUT
 const YELPCAT = "https://www.yelp.com/developers/documentation/v2/all_category_list/categories.json";
 
 //TEMPORARY HARD CODE, FETCH LATER
-var tempCategories = 
+var tempCategories = require("../../categories.json")
 var categories = JSON.parse(tempCategories);
 //http://stackoverflow.com/questions/45015/safely-turning-a-json-string-into-an-object Forgot all about this to be honest
 
