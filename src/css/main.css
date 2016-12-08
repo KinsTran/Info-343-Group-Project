@@ -6,7 +6,8 @@ body {
 
 a {
     text-decoration: none;
-    color: #fff;
+    color: #bbf;
+    text-shadow: 0 0 2px #fff;
 }
 
 /*
@@ -108,17 +109,6 @@ a {
     transition: background-color 300ms;
 }
 
-.button#pick {
-    margin: 0 10px;
-}
-
-#pick {
-}
-
-#pick-row {
-    width: 100%;
-}
-
 .button:hover {
     cursor: pointer;
     background-color: #ddd;
@@ -138,6 +128,10 @@ a {
 
 .pop-up {
     max-width: 175px;
+}
+
+.switch-auth {
+    text-align: center;
 }
 
 /* ID SPECIFIC */
