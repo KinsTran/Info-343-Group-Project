@@ -12,6 +12,7 @@
     <!--defer allows js files to load after the html-->
     <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
     <script defer src="../js/common.js"></script>
+    <script defer src="../js/signin.js"></script>
 </head>
 <body class="default-font">
     <!-- Reference sheet for css styling classes  -->
@@ -23,21 +24,24 @@
             <div id="login-page-center-flex" class="flex-row big-font center">
                 <div id="login-page-forms" class="text-center">
                     <form action="" class="default-font">
-                        <input type="text" class="form-style shadow-drama" placeholder="email"><br>
-                        <input type="text" class="form-style shadow-drama" placeholder="username"><br>
-                        <input type="password" class="form-style shadow-drama" placeholder="password"><br>
-                        <button type="submit" value="submit" id="submit" class="form-style shadow-drama button default-font">
-                            submit
+                        <input type="text" class="form-style shadow-drama" id="email" placeholder="email"><br>
+                        <input type="password" class="form-style shadow-drama" id="password" placeholder="password"><br>
+                        <button type="submit" value="submit" id="submit" class="form-style shadow-drama button">
+                            Log In
                         </button>
                         <div id="error"></div>
                     </form>
                 </div>
                 <div id="login-page-welcome-message" class="text-center" style="">
                     <div>
-                        Good eats at the touch of a button
+                        It's a restaurant roulette.
                     </div>
                 </div>
             </div>
+            <p class="switch-auth">
+                Don't have an account?
+                <a href="index.html">Sign Up</a>
+            </p>
         </div>
     </div>
 
