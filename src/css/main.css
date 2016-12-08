@@ -4,6 +4,12 @@ body {
     background-color: #fff;
 }
 
+a {
+    text-decoration: none;
+    color: #bbf;
+    text-shadow: 0 0 2px #fff;
+}
+
 /*
     Fonts: default, big
 */
@@ -40,6 +46,8 @@ body {
 .nav {
     padding: 10px;
     height: 50px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .nav-title {
@@ -80,11 +88,17 @@ body {
     justify-content: flex-start;
 }
 
+.flex-between {
+    justify-content: space-between;
+}
+
 .button {
-    width: 80px;
-    height: 20px;
+    /*width: 80px;*/
+    /*height: 20px;*/
     padding: 10px;
     margin: 10px;
+
+    color: #333;
 
     border-color: #333;
     border-width: 0px;
@@ -112,13 +126,21 @@ body {
     width: 80%;
 }
 
+.pop-up {
+    max-width: 175px;
+}
+
+.switch-auth {
+    text-align: center;
+}
+
 /* ID SPECIFIC */
 
 /* make the <div id="map"> element
 fill the entire viewport */
 #map {
     width: 100vw; /* 1vw is 1/100th of the viewport width */
-    height: 100vh; /* 1vh is 1/100th of the viewport height */
+    height: 90vh; /* 1vh is 1/100th of the viewport height */
 }
 
 #login-page-nav {
@@ -129,6 +151,8 @@ fill the entire viewport */
     height: 90vh;
     overflow: hidden;
     background: url('../res/map-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #login-page-center-container {
@@ -151,4 +175,34 @@ fill the entire viewport */
     padding: 10px;
     width: 45%;
     overflow: hidden;
+}
+
+#error {
+    color: red;
+    font-size: 0.9em;
+}
+
+@media(max-width: 768px) {
+   #login-page-center-container {
+        padding: 20vh 0;
+    }
+
+    #login-page-center-flex {
+        width: 100%;
+        overflow: hidden;
+        flex-wrap: wrap;
+    }
+
+    #login-page-forms {
+        width: 70%;
+        border: none;
+        /*border-right: white solid 2px;*/
+    }
+
+    #login-page-welcome-message {
+        text-align: center;
+        padding: 10px;
+        width: 70%;
+        overflow: hidden;
+    }
 }
