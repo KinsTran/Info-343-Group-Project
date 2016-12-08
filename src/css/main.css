@@ -136,11 +136,9 @@ a {
 
 /* ID SPECIFIC */
 
-/* make the <div id="map"> element
-fill the entire viewport */
 #map {
-    width: 100vw; /* 1vw is 1/100th of the viewport width */
-    height: 90vh; /* 1vh is 1/100th of the viewport height */
+    width: 100vw;
+    height: 90vh;
 }
 
 /* Below are styles for the login/signup pages */
@@ -184,6 +182,11 @@ fill the entire viewport */
 }
 
 @media(max-width: 1024px) {
+    .big-font {
+        font-size: 20px;
+        text-shadow: 0 0 7px rgba(0,0,0,0.3);
+    }
+
    #login-page-center-container {
         padding: 20vh 0;
     }
@@ -205,10 +208,5 @@ fill the entire viewport */
         padding: 10px;
         width: 70%;
         overflow: hidden;
-    }
-
-    .big-font {
-        font-size: 20px;
-        text-shadow: 0 0 7px rgba(0,0,0,0.3);
     }
 }
