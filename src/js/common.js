@@ -12,5 +12,5 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-var userPreferencesRef = database.ref("preferences");
+var userSettingsRef = database.ref("settings");
 var userSessionRef = database.ref("session");

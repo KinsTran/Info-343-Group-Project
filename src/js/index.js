@@ -14,8 +14,8 @@ signUpForm.addEventListener("submit", function(evt) {
     if (userPassword.value == userConfirmation.value) {
         firebase.auth().createUserWithEmailAndPassword(userEmail.value, userPassword.value)
         .then(function(user) {
-            // firebase.database().ref("preferences/" + user.uid)
-            userPreferencesRef.child(user.uid).set({
+            // firebase.database().ref("settings/" + user.uid)
+            userSettingsRef.child(user.uid).set({
                 prefs: {default: "default"}
             });
             userSessionRef.child(user.uid).set({
