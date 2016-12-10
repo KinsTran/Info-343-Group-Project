@@ -28,7 +28,7 @@ signOutButton.addEventListener("click", function() { // Signs out for user if cl
 
 function renderOptions(snapshot) { // Added for clarity's sake, instead of just a raw function
     options.innerHTML = "";
-    var userPrefs = userPreferencesRef.child(currentUser.uid).child("prefs");
+    var userPrefs = userSettingsRef.child(currentUser.uid).child("prefs");
     console.log("i made it here")
     restaurants.forEach(function(type) {
         var button = document.createElement("div");
@@ -70,4 +70,4 @@ function render(snapshot) {
     snapshot.forEach(renderOptions);
 }
 
-userPreferencesRef.on("value", render); // Rerendering all buttons for sake of one button changing value
+userSettingsRef.on("value", render); // Rerendering all buttons for sake of one button changing value
