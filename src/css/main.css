@@ -133,6 +133,9 @@ a {
     text-align: center;
 }
 
+.selected { /* This may also cause a merge conflict */
+    background-color: #32cd32;
+}
 /* ID SPECIFIC */
 
 #map {
@@ -173,6 +176,11 @@ a {
     padding: 10px;
     width: 45%;
     overflow: hidden;
+}
+
+#options { /*Possible cause of merge conflict, copy paste if the case*/
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 #error {
