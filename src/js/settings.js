@@ -30,9 +30,6 @@ signOutButton.addEventListener("click", function() { // Signs out for user if cl
 
 function renderOptions(snapshot) { // Added for clarity's sake, instead of just a raw function
     options.innerHTML = "";
- /*   if(null == snapshot.child(currentUser.uid)) { // Creates child object if user does not have a 'preferences' setting yet
-        snapshot.child(currentUser.uid).set(new Object);
-    } */
 
     restaurants.forEach(function(type) {
         var button = document.createElement("div");
@@ -44,7 +41,6 @@ function renderOptions(snapshot) { // Added for clarity's sake, instead of just 
 
         button.addEventListener("click", function(event) {
             event.preventDefault();
-            console.log(snapshot.child(currentUser.uid).val());
             if (button.classList.contains("selected")) { // If the preference is selected, toggle off
                 var preferenceType = new Object;
                 preferenceType[type] = null;
@@ -62,7 +58,6 @@ function renderOptions(snapshot) { // Added for clarity's sake, instead of just 
 }
 
 function render(snapshot) {
-    console.log("Called");
     renderOptions(snapshot);
 }
 
