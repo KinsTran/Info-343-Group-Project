@@ -108,11 +108,6 @@ a {
     transition: background-color 300ms;
 }
 
-.small-button { /*Third possible cause of conflict */
-    width: 80px;
-    height: 20px;
-}
-
 .button:hover {
     cursor: pointer;
     background-color: #ddd;
@@ -187,6 +182,7 @@ a {
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
 #error {
     color: red;
     font-size: 0.9em;
