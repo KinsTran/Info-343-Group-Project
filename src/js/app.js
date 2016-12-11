@@ -47,8 +47,10 @@ firebase.auth().onAuthStateChanged(function(user) {
         // Listen for changes on preferences
         currentRef.on("value", function(snap) {
             currentPreferences = Object.values(snap.val());
-            currentPreferences = currentPreferences.slice(0, currentPreferences.length - 1);
-            console.log(currentPreferences);
+            //If the user has selected a currentRating
+            if(snap.val()['currentRating']) {
+                currentPreferences = currentPreferences.slice(0, currentPreferences.length - 1);
+            }
         });
     }
 });
@@ -170,7 +172,6 @@ function chooseRestaurant() {
     address.textContent = restaurant.location.display_address;
 
     marker.bindPopup(divPopup).openPopup();
-
 }
 
 // fetches restaurants that are close the the passed in coordinates and plots them on the map
@@ -185,7 +186,7 @@ function getRestaurants(latlng) {
     url += "?lat=" + latlng.lat;
     url += "&lng=" + latlng.lng;
     url += "&offset=" + offset * 3;
-    if(currentPreferences) {
+    if(currentPreferences.length > 0) {
         url += "&category_filter=";
         for(var i = 0; i < currentPreferences.length - 1; i++) {
             url += currentPreferences[i] + ",";
