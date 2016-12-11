@@ -10,3 +10,6 @@ For our project we are planning on creating a web application that picks a rando
 ## Web Services:
  * Yelp API
  * Firebase
+
+## Link to App:
+https://KinsTran.github.io/bonseye/html/
