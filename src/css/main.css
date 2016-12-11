@@ -113,6 +113,11 @@ a {
     background-color: #ddd;
 }
 
+.dangerous {
+    background-color: #C11;
+    color: white;
+}
+
 .shadow-drama {
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
