@@ -3,10 +3,11 @@
 
 var currentUser; // Stores information for current User
 var currentRef; // Stores reference to current users' preferences
-var signOutButton = document.getElementById("signOut"); 
+var signOutButton = document.getElementById("signOut");  // References to various buttons on settings page
 var returnButton = document.getElementById("saveAndReturn");
 var options = document.getElementById("options");
 var clearPrefs = document.getElementById("clearPrefs");
+var ratings = document.getElementsByName("rating"); // http://www.w3schools.com/jsref/met_doc_getelementsbyname.asp I was about to call every one by an id too
 
 var restaurants = new Array;
 
@@ -18,13 +19,19 @@ firebase.auth().onAuthStateChanged(function(user){
             if(place.parents.includes("restaurants") && (place.country_whitelist && place.country_whitelist.includes("US") || !place.country_whitelist)) {
                 restaurants.push(place.title);
             }
-
             // Initialize clear preferences button
             clearPrefs.addEventListener("click", function(event) { // http://stackoverflow.com/questions/9334636/javascript-yes-no-alert
                 event.preventDefault();
                 currentRef.set(null);
             })
         })
+        for(let i = 0; i < ratings.length; i++) { // Adds event listeners to each button
+            ratings[i].addEventListener("click", function() {
+                var currentRating = new Object;
+                currentRating["currentRating"] = ratings[i].value;
+                currentRef.update(currentRating);
+            })
+        }
     } else { // Redirect to index if someone navigates to settings without being logged in OR if user logs out
         alert("You must be logged in to use bonseye!");
         location = "index.html";
@@ -36,9 +43,9 @@ signOutButton.addEventListener("click", function() { // Signs out for user if cl
 })
 
 function renderOptions(snapshot) { // Added for clarity's sake, instead of just a raw function
-    options.innerHTML = ""; // Renders all buttons for user preferences
+    options.innerHTML = ""; // Renders options for users to set preferences
 
-    restaurants.forEach(function(type) {
+    restaurants.forEach(function(type) {// Renders all buttons for restaurant types
         var button = document.createElement("div");
         button.classList.add("button", "shadow-drama", "default-font");
         button.textContent = type;
@@ -62,10 +69,14 @@ function renderOptions(snapshot) { // Added for clarity's sake, instead of just 
 
         options.appendChild(button);
     })
+
+    for(let i = 0; i < ratings.length; i++) { // Check off button if it is the "current" rating. Must be done here, 
+        if(ratings[i].value == snapshot.child(currentUser.uid).child("currentRating").val()) {// since snapshot is only accessable in this function
+            ratings[i].checked = true;
+        } else { // Explicitly uncheck if button is not "current" rating. Useful for clearing preferences
+            ratings[i].checked = false;
+        }
+    }
 }
 
-function render(snapshot) {
-    renderOptions(snapshot);
-}
-
-userSettingsRef.on("value", render); // Rerendering all buttons for sake of one button changing value
+userSettingsRef.on("value", renderOptions); // Rerendering all buttons for sake of one button changing value

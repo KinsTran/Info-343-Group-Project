@@ -24,7 +24,16 @@
         <p class="big-font">Configure Your Preferences</p>
         <form class="flex-row" id="options">
             <!--settings.js should create a div .button for each-->
-        </form>
+        </form> <!-- Seperate forms here so that the ratings portion does not get erased on rerenders -->
+         <!-- "Use of Yelp’s star rating imagery is forbidden, except on the web in the form of these dynamic ‘review counters.’" -->
+         <form id="ratings"> 
+             Minimum Restaurant Rating:
+             <input type="radio" name="rating" value="1"> 1
+             <input type="radio" name="rating" value="2"> 2
+             <input type="radio" name="rating" value="3"> 3
+             <input type="radio" name="rating" value="4"> 4
+             <input type="radio" name="rating" value="5"> 5
+         </form>
     </div>
     <div id="pref-bottom-nav" class="flex-row">
         <button id="clearPrefs" class="button text-center shadow-drama default-font dangerous">Clear All Preferences</button>
