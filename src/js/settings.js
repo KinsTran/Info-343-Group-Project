@@ -26,6 +26,7 @@ firebase.auth().onAuthStateChanged(function(user){
             })
         })
     } else { // Redirect to index if someone navigates to settings without being logged in OR if user logs out
+        alert("You must be logged in to use bonseye!");
         location = "index.html";
     }
 }) 

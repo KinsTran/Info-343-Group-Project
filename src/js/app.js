@@ -2,6 +2,7 @@
 
 firebase.auth().onAuthStateChanged(function(user) { // Redirects to index if user is not logged in
     if(!user) {
+        alert("You must be logged in to use bonseye!");
         location = "index.html";
     }
 })
