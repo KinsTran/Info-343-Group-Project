@@ -13,19 +13,18 @@
     <script defer src="../js/settings.js"></script>
 </head>
 <body class="default-font">
-    <div id="login-page-nav" class="nav flex-row flex-start shadow-drama">
+    <div id="login-page-nav" class="nav flex-row flex-between shadow-drama">
         <div class="logo"></div>
+        <div class="flex-row">
+            <div class="button shadow-drama default-font" id="signOut">Sign Out</div>
+            <a href="app.html" class="button shadow-drama default-font">Done</a>
+        </div>
     </div>
     <div id="login-page-background" class="container big-font">
         <p class="big-font">Configure Your Preferences</p>
         <form class="flex-row" id="options">
             <!--settings.js should create a div .button for each-->
-
         </form>
-    </div>
-    <div id="pref-bottom-nav" class="flex-row">
-        <div class="button shadow-drama default-font" id="signOut">Sign Out</div>
-        <a href="app.html" class="button shadow-drama default-font">Return to BonsEye!</a>
     </div>
 </body>
 </html>
