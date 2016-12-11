@@ -9,21 +9,23 @@
 
     <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
     <script src="../js/categories.js"></script>
-    <script defer src="../js/common.js"></script> 
+    <script defer src="../js/common.js"></script>
     <script defer src="../js/settings.js"></script>
 </head>
-<body>
-    <main class="container">
-        <h3>Configure Your Preferences</h3>
+<body class="default-font">
+    <div id="login-page-nav" class="nav flex-row flex-start shadow-drama">
+        <div class="logo"></div>
+    </div>
+    <div id="login-page-background" class="container big-font">
+        <p class="big-font">Configure Your Preferences</p>
         <form class="flex-row" id="options">
             <!--settings.js should create a div .button for each-->
 
         </form>
-
-        <div class="flex-row">
-            <div class="button shadow-drama default-font" id="signOut">Sign Out</div>
-            <a href="app.html" class="button shadow-drama default-font">Return to BonsEye!</a>
-        </div>
-    </main>
+    </div>
+    <div id="pref-bottom-nav" class="flex-row">
+        <div class="button shadow-drama default-font" id="signOut">Sign Out</div>
+        <a href="app.html" class="button shadow-drama default-font">Return to BonsEye!</a>
+    </div>
 </body>
 </html>

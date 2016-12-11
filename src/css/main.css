@@ -154,6 +154,7 @@ a {
     background: url('../res/map-bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    padding: 25px;
 }
 
 #login-page-center-container {
@@ -178,8 +179,8 @@ a {
     overflow: hidden;
 }
 
-#options { /*Possible cause of merge conflict, copy paste if the case*/
-    justify-content: space-between;
+#options.flex-row {
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
@@ -216,4 +217,8 @@ a {
         width: 70%;
         overflow: hidden;
     }
+}
+
+#pref-bottom-nav {
+    padding: 10px;
 }
