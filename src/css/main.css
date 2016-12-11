@@ -140,6 +140,7 @@ a {
 
 .selected { /* This may also cause a merge conflict */
     background-color: #32cd32;
+    color: white;
 }
 /* ID SPECIFIC */
 
