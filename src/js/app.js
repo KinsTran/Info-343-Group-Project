@@ -1,5 +1,11 @@
 "use strict";
 
+firebase.auth().onAuthStateChanged(function(user) { // Redirects to index if user is not logged in
+    if(!user) {
+        location = "index.html";
+    }
+})
+
 // OpenStreetMap tile server for the map
 var osmTiles = {
     url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
