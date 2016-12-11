@@ -16,8 +16,8 @@
     <div id="login-page-nav" class="nav flex-row flex-between shadow-drama">
         <div class="logo"></div>
         <div class="flex-row">
-            <div class="button shadow-drama default-font" id="signOut">Sign Out</div>
-            <a href="app.html" class="button shadow-drama default-font">Done</a>
+            <button class="button shadow-drama" id="signOut">Sign Out</button>
+            <button class="button shadow-drama" id="doneSetting">Done</button>
         </div>
     </div>
     <div id="login-page-background" class="container big-font">
@@ -26,7 +26,7 @@
             <!--settings.js should create a div .button for each-->
         </form> <!-- Seperate forms here so that the ratings portion does not get erased on rerenders -->
          <!-- "Use of Yelp’s star rating imagery is forbidden, except on the web in the form of these dynamic ‘review counters.’" -->
-         <form id="ratings"> 
+         <form id="ratings">
              Minimum Restaurant Rating:
              <input type="radio" name="rating" value="1"> 1
              <input type="radio" name="rating" value="2"> 2

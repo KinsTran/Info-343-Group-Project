@@ -4,7 +4,7 @@
 var currentUser; // Stores information for current User
 var currentRef; // Stores reference to current users' preferences
 var signOutButton = document.getElementById("signOut");  // References to various buttons on settings page
-var returnButton = document.getElementById("saveAndReturn");
+var returnButton = document.getElementById("doneSetting");
 var options = document.getElementById("options");
 var clearPrefs = document.getElementById("clearPrefs");
 var ratings = document.getElementsByName("rating"); // http://www.w3schools.com/jsref/met_doc_getelementsbyname.asp I was about to call every one by an id too
@@ -36,12 +36,16 @@ firebase.auth().onAuthStateChanged(function(user){
         }
     } else { // Redirect to index if someone navigates to settings without being logged in OR if user logs out
         alert("You must be logged in to use bonseye!");
-        location = "index.html";
+        location = "login.html";
     }
-})
+});
 
 signOutButton.addEventListener("click", function() { // Signs out for user if clicked
     firebase.auth().signOut();
+});
+
+returnButton.addEventListener("click", function() {
+    window.location = "app.html";
 })
 
 function renderOptions(snapshot) { // Added for clarity's sake, instead of just a raw function
