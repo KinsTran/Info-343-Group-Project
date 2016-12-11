@@ -1,8 +1,8 @@
 // Code for configuring settings on settings page
 "use strict";
 
-var currentUser;
-var currentRef;
+var currentUser; // Stores information for current User
+var currentRef; // Stores reference to current users' preferences
 var signOutButton = document.getElementById("signOut"); 
 var returnButton = document.getElementById("saveAndReturn");
 var options = document.getElementById("options");
@@ -25,7 +25,7 @@ firebase.auth().onAuthStateChanged(function(user){
                 currentRef.set(null);
             })
         })
-    } else { // Redirect to index if navigates to settings without being logged in OR if user logs out
+    } else { // Redirect to index if someone navigates to settings without being logged in OR if user logs out
         location = "index.html";
     }
 }) 
@@ -35,7 +35,7 @@ signOutButton.addEventListener("click", function() { // Signs out for user if cl
 })
 
 function renderOptions(snapshot) { // Added for clarity's sake, instead of just a raw function
-    options.innerHTML = "";
+    options.innerHTML = ""; // Renders all buttons for user preferences
 
     restaurants.forEach(function(type) {
         var button = document.createElement("div");
