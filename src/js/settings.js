@@ -6,6 +6,7 @@ var currentRef;
 var signOutButton = document.getElementById("signOut"); 
 var returnButton = document.getElementById("saveAndReturn");
 var options = document.getElementById("options");
+var clearPrefs = document.getElementById("clearPrefs");
 
 var restaurants = new Array;
 
@@ -13,11 +14,16 @@ firebase.auth().onAuthStateChanged(function(user){
     if(user) { 
         currentUser = user;
         currentRef = database.ref("settings/" + currentUser.uid);
-        categories.forEach(function(place) {
+        categories.forEach(function(place) { // country_whitelist must include "US", parents must include "restaurants"
             if(place.parents.includes("restaurants") && (place.country_whitelist && place.country_whitelist.includes("US") || !place.country_whitelist)) {
                 restaurants.push(place.title);
             }
-            // country_whitelist must include "US", parents must include "restaurants"
+
+            // Initialize clear preferences button
+            clearPrefs.addEventListener("click", function(event) { // http://stackoverflow.com/questions/9334636/javascript-yes-no-alert
+                event.preventDefault();
+                currentRef.set(null);
+            })
         })
     } else { // Redirect to index if navigates to settings without being logged in OR if user logs out
         location = "index.html";
