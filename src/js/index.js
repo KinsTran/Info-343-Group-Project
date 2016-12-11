@@ -7,6 +7,12 @@ var userPassword = document.getElementById("password");
 var userConfirmation = document.getElementById("confirm");
 var errorBox = document.getElementById("error");
 
+firebase.auth().onAuthStateChanged(function(user) { // Redirects to app.html if user is already logged in
+    if(user) {
+        location = "app.html";
+    }
+})
+
 signUpForm.addEventListener("submit", function(evt) {
     // clear out previous error message
     errorBox.innerHTML = "";
