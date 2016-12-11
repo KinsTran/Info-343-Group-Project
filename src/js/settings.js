@@ -10,21 +10,23 @@ var clearPrefs = document.getElementById("clearPrefs");
 var ratings = document.getElementsByName("rating"); // http://www.w3schools.com/jsref/met_doc_getelementsbyname.asp I was about to call every one by an id too
 
 var restaurants = new Array;
+var restaurantsAlias = new Object;
 
 firebase.auth().onAuthStateChanged(function(user){
-    if(user) { 
+    if(user) {
         currentUser = user;
         currentRef = database.ref("settings/" + currentUser.uid);
         categories.forEach(function(place) { // country_whitelist must include "US", parents must include "restaurants"
             if(place.parents.includes("restaurants") && (place.country_whitelist && place.country_whitelist.includes("US") || !place.country_whitelist)) {
                 restaurants.push(place.title);
+                restaurantsAlias[place.title] = place.alias;
             }
             // Initialize clear preferences button
             clearPrefs.addEventListener("click", function(event) { // http://stackoverflow.com/questions/9334636/javascript-yes-no-alert
                 event.preventDefault();
                 currentRef.set(null);
             })
-        })
+        });
         for(let i = 0; i < ratings.length; i++) { // Adds event listeners to each button
             ratings[i].addEventListener("click", function() {
                 var currentRating = new Object;
@@ -36,7 +38,7 @@ firebase.auth().onAuthStateChanged(function(user){
         alert("You must be logged in to use bonseye!");
         location = "index.html";
     }
-}) 
+})
 
 signOutButton.addEventListener("click", function() { // Signs out for user if clicked
     firebase.auth().signOut();
@@ -49,7 +51,7 @@ function renderOptions(snapshot) { // Added for clarity's sake, instead of just 
         var button = document.createElement("div");
         button.classList.add("button", "shadow-drama", "default-font");
         button.textContent = type;
-        if(type == snapshot.child(currentUser.uid).child(type).val()) { // If restuarant type is in database (selected)
+        if(snapshot.child(currentUser.uid).child(type).val()) { // If restuarant type is not null (selected)
             button.classList.add("selected");
         }
 
@@ -61,7 +63,7 @@ function renderOptions(snapshot) { // Added for clarity's sake, instead of just 
                 currentRef.update(preferenceType); // If preference is not selected, toggle on
             } else { // http://stackoverflow.com/questions/11508463/javascript-set-object-key-by-variable
                 var preferenceType = new Object;
-                preferenceType[type] = type;
+                preferenceType[type] = restaurantsAlias[type];
                 currentRef.update(preferenceType);
             }
             return false;
@@ -70,7 +72,7 @@ function renderOptions(snapshot) { // Added for clarity's sake, instead of just 
         options.appendChild(button);
     })
 
-    for(let i = 0; i < ratings.length; i++) { // Check off button if it is the "current" rating. Must be done here, 
+    for(let i = 0; i < ratings.length; i++) { // Check off button if it is the "current" rating. Must be done here,
         if(ratings[i].value == snapshot.child(currentUser.uid).child("currentRating").val()) {// since snapshot is only accessable in this function
             ratings[i].checked = true;
         } else { // Explicitly uncheck if button is not "current" rating. Useful for clearing preferences

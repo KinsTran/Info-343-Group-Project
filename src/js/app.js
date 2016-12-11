@@ -33,6 +33,7 @@ var allRestaurants;
 // the users' current location if they allow permission
 var currentLocation;
 
+// initializes map with touch events allowed
 var map = L.map(mapDiv, {touchZoom: true, dragging: true, tap:true}).setView(seattleCoords, defaultZoom);
 
 L.tileLayer(osmTiles.url, {
@@ -64,7 +65,7 @@ function onPositionError(error) {
 // asks the user to be allouw use of their current location to find restaurants, if they dont allow permission then
 // choose a restaurant in the Seattle area
 if (navigator && navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(onPosition, onPositionError, 
+    navigator.geolocation.getCurrentPosition(onPosition, onPositionError,
         {enableHighAccuracy: true});
 } else {
     getRestaurants(seattleCoords);
@@ -143,16 +144,16 @@ function chooseRestaurant() {
 
     var address = divPopup.appendChild(document.createElement("p"));
     address.textContent = restaurant.location.display_address;
-    
+
     marker.bindPopup(divPopup).openPopup();
-    
+
 }
 
 // fetches restaurants that are close the the passed in coordinates and plots them on the map
 // takes an object with latitude and longitude properties
 function getRestaurants(latlng) {
-    
-    currentLocation = latlng; 
+
+    currentLocation = latlng;
     createMarker();
     map.panTo(latlng);
 
@@ -174,4 +175,4 @@ function getRestaurants(latlng) {
         .catch(function(error) {
             console.error(error);
         });
-} 
+}
