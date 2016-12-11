@@ -16,14 +16,17 @@ app.use(express.static("./src"));
 
 // fetches the data from the Yelp API using the "yelp" module
 app.get("/api/v1/search", function(req, res, next) {
+    console.log("Req: " + req.query.category_filter);
     var params = {
         term: "restaurant",
         ll: req.query.lat + "," + req.query.lng,
+        category_filter: req.query.category_filter,
         offset: offsetAmount * 3,
     };
     yelp.search(params)
         .then(function(data) {
             res.json(data);
+            console.log(res.json(data));
         })
         .catch(function(err) {
             console.error(err);

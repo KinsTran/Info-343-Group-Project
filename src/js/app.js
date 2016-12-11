@@ -1,12 +1,5 @@
 "use strict";
 
-firebase.auth().onAuthStateChanged(function(user) { // Redirects to index if user is not logged in
-    if(!user) {
-        alert("You must be logged in to use bonseye!");
-        location = "index.html";
-    }
-})
-
 // OpenStreetMap tile server for the map
 var osmTiles = {
     url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
@@ -32,6 +25,35 @@ var markers = [];
 var allRestaurants;
 // the users' current location if they allow permission
 var currentLocation;
+// Stores reference to current users' preferences
+var currentRef;
+// Current user containing UID
+var currentUser;
+// Current session
+var currentSess;
+// Retrieved preferences
+var currentPreferences;
+
+// Redirects to index if user is not logged in
+firebase.auth().onAuthStateChanged(function(user) {
+    if(!user) {
+        alert("You must be logged in to use bonseye!");
+        location = "index.html";
+    } else {
+        currentUser = user;
+        currentRef = database.ref("settings/" + currentUser.uid);
+        currentSess = database.ref("session/" + currentUser.uid);
+
+        // Listen for changes on preferences
+        currentRef.on("value", function(snap) {
+            currentPreferences = Object.values(snap.val());
+            currentPreferences = currentPreferences.slice(0, currentPreferences.length - 1);
+            console.log(currentPreferences);
+        });
+    }
+});
+
+
 
 // initializes map with touch events allowed
 var map = L.map(mapDiv, {touchZoom: true, dragging: true, tap:true}).setView(seattleCoords, defaultZoom);
@@ -96,7 +118,9 @@ window.onkeypress = function(e) {
     e = e || window.event;
     if(e.keyCode == 32) {
         clearMarkers();
-        getRestaurants();
+        if(currentLocation) {
+            getRestaurants(currentLocation);
+        }
     }
 };
 
@@ -161,7 +185,15 @@ function getRestaurants(latlng) {
     url += "?lat=" + latlng.lat;
     url += "&lng=" + latlng.lng;
     url += "&offset=" + offset * 3;
+    if(currentPreferences) {
+        url += "&category_filter=";
+        for(var i = 0; i < currentPreferences.length - 1; i++) {
+            url += currentPreferences[i] + ",";
+        }
+        url += currentPreferences[i]; //last element without comma
+    }
     offset++;
+    console.log(url);
     console.log("fetching", url);
     fetch(url)
         .then(function(response) {
