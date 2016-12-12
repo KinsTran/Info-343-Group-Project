@@ -38,7 +38,7 @@ var currentPreferences;
 firebase.auth().onAuthStateChanged(function(user) {
     if(!user) {
         alert("You must be logged in to use bonseye!");
-        location = "index.html";
+        window.location = "index.html";
     } else {
         currentUser = user;
         currentRef = database.ref("settings/" + currentUser.uid);
