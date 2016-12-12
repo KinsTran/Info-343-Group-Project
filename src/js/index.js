@@ -20,15 +20,6 @@ signUpForm.addEventListener("submit", function(evt) {
     if (userPassword.value == userConfirmation.value) {
         firebase.auth().createUserWithEmailAndPassword(userEmail.value, userPassword.value)
         .then(function(user) {
-            // firebase.database().ref("settings/" + user.uid)
-            userSettingsRef.child(user.uid).set({
-                prefs: {default: "default"}
-            });
-            userSessionRef.child(user.uid).set({
-                users: {default: "default"},
-                place: "null",
-                active: true
-            })
             return user.updateProfile({
                 displayName: userName.value
             });
