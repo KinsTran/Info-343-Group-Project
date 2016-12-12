@@ -8,6 +8,7 @@ var returnButton = document.getElementById("doneSetting");
 var options = document.getElementById("options");
 var clearPrefs = document.getElementById("clearPrefs");
 var ratings = document.getElementsByName("rating"); // http://www.w3schools.com/jsref/met_doc_getelementsbyname.asp I was about to call every one by an id too
+var distances = document.getElementsByName("distance");
 
 var restaurants = new Array;
 var restaurantsAlias = new Object;
@@ -32,6 +33,14 @@ firebase.auth().onAuthStateChanged(function(user){
                 var currentRating = new Object;
                 currentRating["currentRating"] = ratings[i].value;
                 currentRef.update(currentRating);
+            })
+        }
+        
+        for(let i = 0; i < distances.length; i++) { // Adds event listeners to each button
+            distances[i].addEventListener("click", function() {
+                var maxDistance = new Object;
+                maxDistance["maxDistance"] = ratings[i].value;
+                currentRef.update(maxDistance);
             })
         }
     } else { // Redirect to index if someone navigates to settings without being logged in OR if user logs out
@@ -81,6 +90,14 @@ function renderOptions(snapshot) { // Added for clarity's sake, instead of just 
             ratings[i].checked = true;
         } else { // Explicitly uncheck if button is not "current" rating. Useful for clearing preferences
             ratings[i].checked = false;
+        }
+    }
+
+    for(let i = 0; i < distances.length; i++) { // Check off button if it is the "maximum distance". Must be done here,
+        if(distances[i].value == snapshot.child(currentUser.uid).child("maxDistance").val()) {// since snapshot is only accessable in this function
+            distances[i].checked = true;
+        } else { // Explicitly uncheck if button is not "current" rating. Useful for clearing preferences
+            distances[i].checked = false;
         }
     }
 }
