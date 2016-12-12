@@ -6,7 +6,7 @@ For our project we are planning on creating a web application that picks a rando
 ## To Run
 Sign up for a Yelp v2 API key. Clone this repository and run ```npm install```. Pass in your Yelp API keys as environment variables and then ```npm start```.
 
-It should look like this: ```CONSUMER_KEY=yourkeyhere CONSUMER_SECRET=... npm install```
+It should look like this: ```CONSUMER_KEY=yourkeyhere CONSUMER_SECRET=... npm start```
 
 Go to http://localhost:3000/html/index.html and sign up for an account.
 Feel free to adjust your food preferences and the next time you're hungry, don't forget to come back!
