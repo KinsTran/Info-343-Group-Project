@@ -51,10 +51,6 @@ firebase.auth().onAuthStateChanged(function(user) {
             if(snap.val()['currentRating']) {
                 currentPreferences = currentPreferences.slice(0, currentPreferences.length - 1);
             }
-            //if the user has a maximum distance selected, need to not add the number to fetch url
-            if(snap.val()['maxDistance']) {
-                currentPreferences = currentPreferences.slice(0, currentPreferences.length - 1);
-            }
         });
     }
 });

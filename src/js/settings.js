@@ -35,14 +35,6 @@ firebase.auth().onAuthStateChanged(function(user){
                 currentRef.update(currentRating);
             })
         }
-        
-        for(let i = 0; i < distances.length; i++) { // Adds event listeners to each button
-            distances[i].addEventListener("click", function() {
-                var maxDistance = new Object;
-                maxDistance["maxDistance"] = ratings[i].value;
-                currentRef.update(maxDistance);
-            })
-        }
     } else { // Redirect to index if someone navigates to settings without being logged in OR if user logs out
         alert("You must be logged in to use bonseye!");
         location = "login.html";
@@ -90,14 +82,6 @@ function renderOptions(snapshot) { // Added for clarity's sake, instead of just 
             ratings[i].checked = true;
         } else { // Explicitly uncheck if button is not "current" rating. Useful for clearing preferences
             ratings[i].checked = false;
-        }
-    }
-
-    for(let i = 0; i < distances.length; i++) { // Check off button if it is the "maximum distance". Must be done here,
-        if(distances[i].value == snapshot.child(currentUser.uid).child("maxDistance").val()) {// since snapshot is only accessable in this function
-            distances[i].checked = true;
-        } else { // Explicitly uncheck if button is not "current" rating. Useful for clearing preferences
-            distances[i].checked = false;
         }
     }
 }
