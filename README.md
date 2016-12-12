@@ -12,4 +12,4 @@ For our project we are planning on creating a web application that picks a rando
  * Firebase
 
 ## Link to App:
-https://KinsTran.github.io/bonseye/html/
+https://KinsTran.github.io/bonseye/src/html/
