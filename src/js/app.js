@@ -186,7 +186,7 @@ function getRestaurants(latlng) {
     url += "?lat=" + latlng.lat;
     url += "&lng=" + latlng.lng;
     url += "&offset=" + offset * 3;
-    if(currentPreferences.length > 0) {
+    if(currentPreferences != undefined && currentPreferences.length > 0) {
         url += "&category_filter=";
         for(var i = 0; i < currentPreferences.length - 1; i++) {
             url += currentPreferences[i] + ",";
